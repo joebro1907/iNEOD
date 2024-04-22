@@ -1,2 +1,2 @@
 # NEIOD
-A MODERN AND OPEN IMPLEMENTATION OF GAUSS'S METHOD FOR INITIAL ORBIT DETERMINATION
+A modern and open implementation of gauss's method for initial orbit determination
