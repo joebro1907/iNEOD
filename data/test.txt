@@ -1,0 +1,19 @@
+# version=2017
+# observatory
+! mpcCode P07
+# submitter
+! name J. Smith
+# observers
+! name J. Smith
+# measurers
+! name J. Smith
+# telescope
+! design Reflector
+! aperture 3500.0
+! fRatio 1.0
+! detector CMO
+permID |provID     |trkSub  |mode|stn |obsTime                |ra         |dec        |rmsRA|rmsDec|rmsFit|astCat  |mag  |rmsMag|band|photCat |photAp|logSNR|exp |notes|remarks
+  85095|5192 T-2   |        | CCD|P07 |2021-08-04T19:09:20Z   |1.276850   |-7.40092   |0.015|0.15  |0.01  |        |     |      |    |        |      |      |    |     |
+  85095|5192 T-2   |        | CCD|P07 |2021-08-29T18:31:53Z   |355.397521 |-5.24053   |0.015|0.15  |0.01  |        |     |      |    |        |      |      |    |     |
+  85095|5192 T-2   |        | CCD|P07 |2021-09-14T18:19:01Z   |349.228379 |-3.96226   |0.015|0.15  |0.01  |        |     |      |    |        |      |      |    |     |
+ 
