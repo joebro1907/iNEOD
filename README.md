@@ -8,12 +8,12 @@ Author: José B. Batista M.
 
 The code requires the following Python packages:
 
-Numpy
-Scipy
-Astropy
-Astroquery
-Matplotlib
-Poliastro (own forked version)
+Numpy,
+Scipy,
+Astropy,
+Astroquery,
+Matplotlib,
+Poliastro (own forked version),
 Pandas
 
 What the project does
