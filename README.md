@@ -29,7 +29,7 @@ All this being open source.
 
 2. Download this repository.
 
-3. Read the doctrings on both [initial_orbit_determination.py](https://github.com/joebro1907/NEIOD/blob/main/initial_orbit_determination.py) and [iod_functions.py](https://github.com/joebro1907/NEIOD/blob/main/iod_functions.py) to understand how to use the functions and scripts effectively. This means understanding the input parameters, expected data formats, and the expected output.
+3. Read the docstrings on both [initial_orbit_determination.py](https://github.com/joebro1907/NEIOD/blob/main/initial_orbit_determination.py) and [iod_functions.py](https://github.com/joebro1907/NEIOD/blob/main/iod_functions.py) to understand how to use the functions and scripts effectively. This means understanding the input parameters, expected data formats, and the expected output.
   
    **_When running, the code itself will tell the you everything it needs and the expected format._**
 
@@ -45,7 +45,7 @@ All this being open source.
 
 * Documentation: Both scripts should include detailed documentation explaining the purpose of each function, the expected inputs and outputs, and examples of usage.
 
-   You can directly contact me if you have specific questions not covered by the documentation.
+   You can  contact me directly if you have specific questions not covered by the documentation.
 
 * GitHub Repository Issues: If you find any bugs or would like to change/add things, you can use this repository's [issue tracker](https://github.com/joebro1907/NEIOD/issues) for known issues, discussions, and possible solutions.
 
@@ -53,4 +53,4 @@ All this being open source.
 
 The project is likely to be maintained and contributed to by me and anoyone interested in celestial mechanics, astronomy, and Python programming. Users can reach out for support, contributions, or to report issues.
 
-While the author of this repository (me, @joebro1907) is new somewhat new to python, he will try his best :)
+While the author of this repository (me, @joebro1907) is new somewhat new to Python, he will try his best :)
