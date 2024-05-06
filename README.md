@@ -17,7 +17,7 @@ NEOID requires the following Python packages:
 * Astroquery
 * Matplotlib
 * Pandas
-* Poliastro (forked version: https://github.com/joebro1907/poliastro)
+* [Poliastro](https://github.com/joebro1907/poliastro) (forked version)
 
 NEOID is supported on macOS and Windows on Python 3.11.
   
