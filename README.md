@@ -11,9 +11,9 @@ This project is valuable for students, enthusiasts, astronomers, and anyone inte
 
 All this being open source.
 
-## Installation
+## Installation and Use
 
-Install Required Libraries: Users need to have Python (3.11 is the latest version tested) installed on their system along with the following Python libraries:
+1. The code requires the following Python libraries (tested on Python 3.11)
 
 * Numpy
 * Scipy
@@ -23,21 +23,34 @@ Install Required Libraries: Users need to have Python (3.11 is the latest versio
 * Pandas
 * Poliastro (forked version: https://github.com/joebro1907/poliastro)
 
-They can install these libraries using [requirements.txt](https://github.com/joebro1907/NEIOD/blob/main/requirements.txt):
+   You can install these libraries using [requirements.txt](https://github.com/joebro1907/NEIOD/blob/main/requirements.txt) in the source:
 
-`pip install -r requirements.txt`
+   `pip install -r requirements.txt`
 
-Download the Code: Users can download the Python scripts or Jupyter notebooks containing the project code from a repository or directly from where it's hosted.
-Read Documentation and Examples: Users should read the project documentation and examples provided to understand how to use the functions and scripts effectively. This includes understanding the input parameters, expected data formats, and the expected output.
-Experiment and Modify: Users can start by experimenting with the provided examples, modifying parameters, and input data to see how the functions behave and how they can be adapted for their specific needs.
+2. Download this repository.
 
-## Collaboration
+3. Read the doctrings on both [initial_orbit_determination.py](https://github.com/joebro1907/NEIOD/blob/main/initial_orbit_determination.py) and [iod_functions.py](https://github.com/joebro1907/NEIOD/blob/main/iod_functions.py) to understand how to use the functions and scripts effectively. This means understanding the input parameters, expected data formats, and the expected output.
+  
+   **_When running, the code itself will tell the you everything it needs and the expected format._**
 
-Documentation: The project should include detailed documentation explaining the purpose of each function, the expected inputs and outputs, and examples of usage.
-Online Communities: Users can seek help from online communities such as Stack Overflow, where they can ask specific questions and get assistance from the community.
-GitHub Repository Issues: If the project is hosted on GitHub, users can check the repository's issue tracker for known issues, discussions, and solutions to common problems.
-Contact the Maintainer: Users can directly contact the maintainer or contributors of the project if they encounter issues or have specific questions not covered by the documentation.
+4. Run the code with `initial_orbit_determination.py`
+
+5. Test the code with the provided example data in the [data](https://github.com/joebro1907/NEIOD/tree/main/data) folder. Also you can try and modify some parameters like `nmax` or `tol` in the `gauss_method` function to see how the code behaves and how they can be adapted for your specific needs.
+
+   You can also try modifying the input data to see how the accuracy changes, for example.
+
+6. **Use you own data and calculate orbits!**
+
+## Feedback and Collaboration
+
+* Documentation: Both scripts should include detailed documentation explaining the purpose of each function, the expected inputs and outputs, and examples of usage.
+
+   You can directly contact me if you have specific questions not covered by the documentation.
+
+* GitHub Repository Issues: If you find any bugs or would like to change/add things, you can use this repository's [issue tracker](https://github.com/joebro1907/NEIOD/issues) for known issues, discussions, and possible solutions.
 
 ## Maintenance
 
-The project is likely maintained and contributed to by a team or individual developers interested in celestial mechanics, astronomy, and Python programming. The maintainer or contributors would be listed in the project's documentation or on the repository's page if it's hosted on platforms like GitHub. Users can reach out to them for support, contributions, or to report issues.
+The project is likely to be maintained and contributed to by me and anoyone interested in celestial mechanics, astronomy, and Python programming. Users can reach out for support, contributions, or to report issues.
+
+While the author of this repository (me, @joebro1907) is new somewhat new to python, he will try his best :)
