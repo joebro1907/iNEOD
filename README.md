@@ -41,23 +41,9 @@ You can install these libraries using [requirements.txt](https://github.com/joeb
 
 5. **Use you own data and calculate orbits!**
 
-## Feedback and Collaboration
-
-* Documentation: Both scripts should include detailed documentation explaining the purpose of each function, the expected inputs and outputs, and examples of usage.
-
-   You can  contact me directly if you have specific questions not covered by the documentation.
-
-* GitHub Repository Issues: If you find any bugs or would like to change/add things, you can use this repository's [issue tracker](https://github.com/joebro1907/NEIOD/issues) for known issues, discussions, and possible solutions.
-
-## Maintenance
-
-The project is likely to be maintained and contributed to by me and anoyone interested in celestial mechanics, astronomy, and Python programming. Users can reach out for support, contributions, or to report issues.
-
-While the author of this repository (me, @joebro1907) is new somewhat new to Python, he will try his best :)
-
 ## License
 
-NEIOD is released under the MIT license. Please refer to the [LICENSE] file.
+NEIOD is released under the MIT license. Please refer to the [LICENSE](https://github.com/joebro1907/NEIOD/blob/main/LICENSE) file.
 
     The MIT License (MIT)
     
@@ -80,3 +66,17 @@ NEIOD is released under the MIT license. Please refer to the [LICENSE] file.
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
+
+## Feedback and Collaboration
+
+* Documentation: Both scripts should include detailed documentation explaining the purpose of each function, the expected inputs and outputs, and examples of usage.
+
+   You can  contact me directly if you have specific questions not covered by the documentation.
+
+* GitHub Repository Issues: If you find any bugs or would like to change/add things, you can use this repository's [issue tracker](https://github.com/joebro1907/NEIOD/issues) for known issues, discussions, and possible solutions.
+
+## Maintenance
+
+The project is likely to be maintained and contributed to by me and anoyone interested in celestial mechanics, astronomy, and Python programming. Users can reach out for support, contributions, or to report issues.
+
+While the author of this repository (me, @joebro1907) is new somewhat new to Python, he will try his best :)
