@@ -324,7 +324,7 @@ def jpl_horizons_sun_position(epochs):
                                the corresponding n epochs.
     """
     
-    query_epochs = "\n".join([str(epochs.jd) for epoch in epochs])            
+    query_epochs = "\n".join([str(epoch.jd) for epoch in epochs])            
     # Request parameters
     request_dict = {'format' : 'text',
                     'EPHEM_TYPE' : 'VECTOR',
