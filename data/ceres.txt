@@ -1,0 +1,18 @@
+# version=2017
+# observatory
+! mpcCode 000
+# submitter
+! name J. Smith
+# observers
+! name J. Smith
+# measurers
+! name J. Smith
+# telescope
+! design Reflector
+! aperture 1.0
+! fRatio 1.0
+! detector CMO
+permID |provID     |trkSub  |mode|stn |obsTime                |ra         |dec        |rmsRA|rmsDec|rmsFit|astCat  |mag  |rmsMag|band|photCat |photAp|logSNR|exp |notes|remarks
+      1|A801 AA    |        | CMO|000 |2024-01-01T00:00:00Z   |254.071087 |-20.69148  |0.015|0.15  |0.01  |        |     |      |    |        |      |      |    |     |
+      1|A801 AA    |        | CMO|000 |2024-01-08T00:00:00Z   |257.074719 |-21.15458  |0.015|0.15  |0.01  |        |     |      |    |        |      |      |    |     |
+      1|A801 AA    |        | CMO|000 |2024-01-15T00:00:00Z   |260.047034 |-21.55920  |0.015|0.15  |0.01  |        |     |      |    |        |      |      |    |     |

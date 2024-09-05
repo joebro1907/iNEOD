@@ -1,10 +1,10 @@
-cff-version: 1.0.0
+cff-version: 1.0.1
 message: "If you use this software, please cite it as below."
 authors:
 - family-names: "Batista-Mendoza"
   given-names: "José Braulio"
   orcid: "https://orcid.org/0000-0001-5485-0113"
 title: "NEIOD"
-version: 1.0.0
-date-released: 2024-04-23
+version: 1.0.1
+date-released: 2024-09-04
 url: "https://github.com/joebro1907/NEIOD"

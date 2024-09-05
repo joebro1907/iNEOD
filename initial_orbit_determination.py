@@ -1,8 +1,3 @@
-# Code created on Aug 16 2022
-# Last Modified on April 23 2024
-
-# Author: José B. Batista M.
-
 import warnings, os, re
 import matplotlib.pyplot as plt
 import numpy as np
@@ -11,9 +6,9 @@ from astropy import units as u
 from scipy.stats import norm
 from iod_functions import (check_internet_connection, sigma_decimals,
                            get_input_data, equatorial_to_ecliptic,
-                           jpl_horizons_elements, jpl_horizons_ephemerides,
+                           jpl_horizons_elements, jpl_horizons_ephemeris,
                            sbdb_query, orbit_class, gauss_method, mpc_obs_query,
-                           orbital_elements, generate_ephemerides, plot_orbit)
+                           orbital_elements, generate_ephemeris, plot_orbit)
 
 def initial_orbit_determination():
     """
@@ -35,7 +30,7 @@ def initial_orbit_determination():
       7. Mean and standard deviation calculations for state vectors and elements.
       8. Astrometry, orbital elements histograms and orbit plotting.
       9. Saving results to a text file and plots.
-      10. Optional orbit propagation for generating ephemerides. 
+      10. Optional orbit propagation for generating ephemeris. 
       
     Args:
       None (data is obtained through user prompts and file operations).
@@ -75,7 +70,7 @@ def initial_orbit_determination():
     file = os.path.join(folder, f"{name} - Results.txt")
     astrometry = os.path.join(folder, f"{name} - Astrometry.png")
     histogram = os.path.join(folder, f"{name} - Histograms.png")
-    ephemerides = os.path.join(folder, f"{name} - Ephemerides.png")
+    ephemeris = os.path.join(folder, f"{name} - ephemeris.png")
     # Unpack all variables from input arrays
     ra1, ra2, ra3 = ras[0], ras[1], ras[2]
     ra1_std, ra2_std, ra3_std = ra_stds[0], ra_stds[1], ra_stds[2]
@@ -607,15 +602,15 @@ def initial_orbit_determination():
         m, s = divmod(remainder, 60)
         print(f"All Plots created in {int(h)}h {int(m)}m {int(s)}s")
         print("All plots saved to folder.")
-    # Ask user if they want to generate ephemerides
+    # Ask user if they want to generate ephemeris
     while True:
-        print("\nDo you wish to generate ephemerides for this asteroid? (YES 'Y' or NO 'N')")
+        print("\nDo you wish to generate ephemeris for this asteroid? (YES 'Y' or NO 'N')")
         answer = input("Answer: ").upper()
         if answer in ('Y', 'YES'):
             warnings.filterwarnings("ignore", category=FutureWarning)
-            # Get the ephemerides site from the user
+            # Get the ephemeris site from the user
             while True:
-                print("\nEnter the desired location for the Horizons System ephemerides.")
+                print("\nEnter the desired location for the Horizons System ephemeris.")
                 print("NOTE: ONLY 1 SITE is currently supported.")
                 print("\n* MPC code or coordinates separated by COMMAS (lon[deg],lat[deg],alt[m]):")
                 site_str = input("* ").upper()
@@ -648,19 +643,24 @@ def initial_orbit_determination():
                 elif site_str.count(',') == 2: # Use as manual location
                     coords = list(site_str.split(","))
                     while True:
-                        if all(isinstance(float(coord), float) for coord in coords):
-                            site = np.array(coords).reshape((1, 3))
-                            answer1 = None
-                        else:
+                        try: # Try to convert all coordinates to float
+                            if all(float(coord) for coord in coords):
+                                site = np.array([float(coord) for coord in coords]).reshape((1, 3))
+                                answer1 = None
+                            else:
+                                print("ERROR: INVALID INPUT FORMAT. Enter DECIMAL values.")
+                                answer1 = None
+                                break
+                        except ValueError:
                             print("ERROR: INVALID INPUT FORMAT. Enter DECIMAL values.")
                             answer1 = None
                             break
                         print(f"\n→ {site[0, 0]},{site[0, 1]} (at {site[0, 2]} m)")
-                        print("Are this the correct coords? (YES 'Y' or NO 'N')")
+                        print("Are these the correct coordinates? (YES 'Y' or NO 'N')")
                         answer1 = input("Answer: ").upper()
-                        if answer1 in ('Y','YES'):
+                        if answer1 in ('Y', 'YES'):
                             break
-                        elif answer1 in ('N','NO'):
+                        elif answer1 in ('N', 'NO'):
                             break
                         else:
                             print("ERROR: Answer must be YES (Y) or NO (N). Enter a valid answer.")
@@ -674,9 +674,9 @@ def initial_orbit_determination():
                     print("\nMPC code or coordinates separated by COMMAS (lon[deg],lat[deg],alt[km])")
                     continue
                 break
-            # Get the ephemerides epochs from the user
+            # Get the ephemeris epochs from the user
             while True:
-                print("\nEnter the desired ephemerides utc epochs.")
+                print("\nEnter the desired ephemeris utc epochs.")
                 print("NOTE: UP TO 180 DAYS RECOMMENDED. Further epochs could result in LARGE errors.")
                 print("\n* UTC Epochs in ISOT format (yyyy-mm-ddThh:mm:ss.sss) separated by COMMAS:")
                 eph_dates_str = input("* ")
@@ -705,7 +705,7 @@ def initial_orbit_determination():
                             location = (site_lon, site_lat))
                 eph_epochs = eph_epchs.sort()
                 break
-            # Start the ephemerides timer
+            # Start the ephemeris timer
             start_time3 = Time.now()
             # Calculate the mean and std of the equatorial state vectors in km
             mean_r_eq = np.array(
@@ -725,18 +725,18 @@ def initial_orbit_determination():
             V0zs = np.random.normal(mean_v_eq[2], sigma_v_eq[2], N)
             R0s = np.array([R0xs, R0ys, R0zs]).T
             V0s = np.array([V0xs, V0ys, V0zs]).T
-            eph = generate_ephemerides(ltc_epoch, eph_epochs, R0s, V0s, N, ltc = False)
+            eph = generate_ephemeris(ltc_epoch, eph_epochs, R0s, V0s, N, ltc = False)
             eph_ltcs = eph[:, 2]/(299792.458/149597870.7)
             ltc_eph_epochs = eph_epochs - TimeDelta(eph_ltcs, format = 'sec')
-            ltc_eph = generate_ephemerides(ltc_epoch, ltc_eph_epochs, R0s, V0s, N, ltc = True)
-            # Get the ephemerides from JPL Horizons to comnpare
+            ltc_eph = generate_ephemeris(ltc_epoch, ltc_eph_epochs, R0s, V0s, N, ltc = True)
+            # Get the ephemeris from JPL Horizons to comnpare
             if id in ('u', 'U'):
-                sbdb_eph = jpl_horizons_ephemerides(sbdb_id, site, eph_epochs)
+                sbdb_eph = jpl_horizons_ephemeris(sbdb_id, site, eph_epochs)
             else:
-                jpl_eph = jpl_horizons_ephemerides(id, site, eph_epochs)         
-            # Save Ephemerides to Results.txt
+                jpl_eph = jpl_horizons_ephemeris(id, site, eph_epochs)         
+            # Save ephemeris to Results.txt
             with open(file, "a", encoding='utf-8') as text:
-                text.write("\nAstrometric Ephemerides for the Specified Epochs:\n")
+                text.write("\nAstrometric ephemeris for the Specified Epochs:\n")
                 if site.shape[1] == 8:
                     text.write(f"\nObservatory: {site[0, 0]} - {site[0, 6]} ({site[0, 7]})\n")
                 else:
@@ -793,8 +793,8 @@ def initial_orbit_determination():
                                      eph_dec_std, jpl_dec, jpl_dec_std,
                                      abs((jpl_eph[i, 1] - ltc_eph[i, 1]) / 
                                          jpl_eph[i, 1]) * 100)))         
-            # Plot the ephemerides
-            print("\nCreating Ephemerides plots...")
+            # Plot the ephemeris
+            print("\nCreating ephemeris plots...")
             plt.rcParams["font.family"] = "Arial"
             if id in ('u', 'U'):
                 db_eph = sbdb_eph
@@ -840,29 +840,29 @@ def initial_orbit_determination():
             # Remove empty subplots if necessary
             if len(ltc_eph) > 2 and len(ltc_eph) % 2 != 0:
                 fig.delaxes(ax[rows - 1, 1])
-            fig.suptitle(f'Astrometric Ephemerides of {name}', fontsize = 18, fontweight = 'bold')
+            fig.suptitle(f'Astrometric ephemeris of {name}', fontsize = 18, fontweight = 'bold')
             plt.tight_layout(rect = [0, 0, 1, 0.99])
-            plt.savefig(ephemerides, format = "png", dpi = 300) # Save the plots
+            plt.savefig(ephemeris, format = "png", dpi = 300) # Save the plots
             plt.close('all')
-            # Stop the ephemerides timer
+            # Stop the ephemeris timer
             end_time3 = Time.now()
             elapsed_time3 = end_time3 - start_time3
             # Tell the user is done calculating and tell the time it took
             if elapsed_time3.sec < 60:
-                print(f"\nEphemerides calculated in {elapsed_time3.sec:.3f}s")
-                print("Ephemerides added to Orbit file.")
+                print(f"\nephemeris calculated in {elapsed_time3.sec:.3f}s")
+                print("ephemeris added to Orbit file.")
                 print("Plots saved to folder.")
             elif elapsed_time3.sec < 3600:
                 m, s = divmod(elapsed_time3.sec, 60)
-                print(f"\nEphemerides calculated in {int(m)}m {s:.3f}s")
-                print("Ephemerides added to Orbit file.")
+                print(f"\nephemeris calculated in {int(m)}m {s:.3f}s")
+                print("ephemeris added to Orbit file.")
                 print("Plots saved to folder.")
             else:
                 h, remainder = divmod(elapsed_time3.sec, 3600)
                 m, s = divmod(remainder, 60)
                 print(
-                    f"\nEphemerides calculated in {int(h)}h {int(m)}m {s:.3f}s")
-                print("Ephemerides added to Orbit file.")
+                    f"\nephemeris calculated in {int(h)}h {int(m)}m {s:.3f}s")
+                print("ephemeris added to Orbit file.")
                 print("Plots saved to folder.")
             elapsed_time = elapsed_time1 + elapsed_time2 + elapsed_time3
             with open(file, "a", encoding='utf-8') as text:

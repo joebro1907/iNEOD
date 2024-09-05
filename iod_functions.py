@@ -1,8 +1,3 @@
-# Code created on Aug 16 2022
-# Last Modified on April 23 2024
-
-# Author: José B. Batista M.
-
 import numpy as np
 import pandas as pd
 from astropy.time import Time
@@ -546,9 +541,9 @@ def jpl_horizons_elements(id, TDB):
         jpl_cop = np.array([EC, QR, IN, OM, W, TA, MA, A, Tp])
     return jpl_cop
 
-def jpl_horizons_ephemerides(id, site, epochs):
+def jpl_horizons_ephemeris(id, site, epochs):
     """
-    Retrieves ephemerides for a target at specified epochs.
+    Retrieves ephemeris for a target at specified epochs.
 
     This function fetches the right ascension (RA), declination (Dec), and their 
     associated 3-sigma uncertainties for a target body (e.g., asteroid) at a list 
@@ -564,7 +559,7 @@ def jpl_horizons_ephemerides(id, site, epochs):
                                           - 'lon' (float): Longitude of the site (degrees).
                                           - 'lat' (float): Latitude of the site (degrees).
                                           - 'elevation' (float): Elevation of the site (meters).
-        epochs (list of astropy.time.Time objects): UTC Epochs for which the ephemerides are desired.
+        epochs (list of astropy.time.Time objects): UTC Epochs for which the ephemeris is desired.
 
     Returns:
         eph.T (numpy array): Rphemerides for the target at the n epochs. The 
@@ -582,11 +577,15 @@ def jpl_horizons_ephemerides(id, site, epochs):
         location = {'lon': float(site[0, 0]), 'lat': float(site[0, 1]), 
                     'elevation': float(site[0, 2])/1000}
     body = Horizons(id = id, location = location, epochs = epochs.jd)
-    ephemerides = body.ephemerides(refsystem = "ICRF", skip_daylight = True, extra_precision = True)
-    RA = ephemerides['RA'].filled(0).copy().data  # Right Ascension
-    Dec = ephemerides['DEC'].filled(0).copy().data  # Declination
-    RA_3sigma = ephemerides['RA_3sigma'].filled(0).copy().data/3600/3  # Uncertainty in RA
-    Dec_3sigma = ephemerides['DEC_3sigma'].filled(0).copy().data/3600/3 # Uncertainty in DeC
+    ephemeris = body.ephemerides(refsystem = "ICRF", skip_daylight = False, extra_precision = True)
+    RA = ephemeris['RA'].filled(0).copy().data  # Right Ascension
+    Dec = ephemeris['DEC'].filled(0).copy().data  # Declination
+    RA_3sigma = ephemeris['RA_3sigma'].filled(0).copy().data
+    RA_3sigma[RA_3sigma == 0] = 0.001  # Set zero values to 0.001
+    RA_3sigma = RA_3sigma/3600/3  # Convert to degrees
+    Dec_3sigma = ephemeris['DEC_3sigma'].filled(0).copy().data
+    Dec_3sigma[Dec_3sigma == 0] = 0.001  # Set zero values to 0.001
+    Dec_3sigma = Dec_3sigma/3600/3 # Convert to degrees
     eph = np.array([RA, Dec, RA_3sigma, Dec_3sigma])
     return eph.T
 
@@ -2168,15 +2167,15 @@ def propagate_state_vectors(R0, V0, t):
     V = fDot * R0 + gDot * V0
     return R, V
 
-def generate_ephemerides(start_epoch, ephemerides_epochs, R0s, V0s, n, ltc):
+def generate_ephemeris(start_epoch, ephemeris_epochs, R0s, V0s, n, ltc):
     """
-    Generates light-Time corrected ephemerides (RA and DEC) with uncertanties 
+    Generates light-Time corrected ephemeris (RA and DEC) with uncertanties 
     for a body at a specified epochs range.
 
     Args:
       start_epoch (astropy.time.Time object): The reference epoch.
-      ephemerides_epochs (list of astropy.time.Time objects): A list of epochs at which 
-                                                              to calculate ephemerides.
+      ephemeris_epochs (list of astropy.time.Time objects): A list of epochs at which 
+                                                              to calculate ephemeris.
       R0s (numpy array): Array of N initial position vectors for the body.
       V0s (numpy array): Array of N initial velocity vectors for the body.
       n (int): The number of MC somulations.
@@ -2184,7 +2183,7 @@ def generate_ephemerides(start_epoch, ephemerides_epochs, R0s, V0s, n, ltc):
                   or not (False) and whether to calculate it.
 
     Returns:
-      ephemerides (numpy array): Ephemerides for each epoch. Each row contains the 
+      ephemeris (numpy array): ephemeris for each epoch. Each row contains the 
                                  following variables:
                                      - np.mean(ra) (float): Mean Right Ascension (degrees)
                                      - np.mean(dec) (float): Mean Declination (degrees)
@@ -2201,9 +2200,9 @@ def generate_ephemerides(start_epoch, ephemerides_epochs, R0s, V0s, n, ltc):
     """
     
     if ltc is False: print()
-    sun_rs = jpl_horizons_sun_position(ephemerides_epochs)
-    ephemerides = np.zeros((len(ephemerides_epochs),12))
-    for i, (eph_epoch, sun_r) in enumerate(zip(ephemerides_epochs, sun_rs)):
+    sun_rs = jpl_horizons_sun_position(ephemeris_epochs)
+    ephemeris = np.zeros((len(ephemeris_epochs),12))
+    for i, (eph_epoch, sun_r) in enumerate(zip(ephemeris_epochs, sun_rs)):
         t = (eph_epoch - start_epoch).sec
         Rs = np.zeros((n, 3))
         Vs = np.zeros((n, 3))
@@ -2214,7 +2213,7 @@ def generate_ephemerides(start_epoch, ephemerides_epochs, R0s, V0s, n, ltc):
             print('\rCalcutating Light-Time Correction (0.00%)', end = '', flush = True)
         for j in range(n):
             if ltc is True:
-                print('\rCalculating ephemeris for epoch {} out of {} ({:.2f}%)'.format(i+1, len(ephemerides_epochs),(i+1)/len(ephemerides_epochs)*100), end = '', flush = True)
+                print('\rCalculating ephemeris for epoch {} out of {} ({:.2f}%)'.format(i+1, len(ephemeris_epochs),(i+1)/len(ephemeris_epochs)*100), end = '', flush = True)
             sv = propagate_state_vectors(R0s[j], V0s[j], t)
             R = sv[0]
             V = sv[1]
@@ -2234,11 +2233,11 @@ def generate_ephemerides(start_epoch, ephemerides_epochs, R0s, V0s, n, ltc):
             delta[j] = r_mag / 149597870.7
         mean_R = np.mean(Rs, axis = 0) / 149597870.7
         mean_V = np.mean(Vs, axis = 0) * 0.000577548
-        # Calculate the mean and std of the ephemerides
+        # Calculate the mean and std of the ephemeris
         eph = np.array([np.mean(ra), np.mean(dec), np.mean(delta), np.std(ra), np.std(dec), np.std(delta), mean_R[0], mean_R[1], mean_R[2], mean_V[0], mean_V[1], mean_V[2]])
-        ephemerides[i] = eph
+        ephemeris[i] = eph
         if ltc is False:
-            print('\rCalcutating Light-Time Correction ({:.2f}%)'.format((i+1)/len(ephemerides_epochs)*100), end = '', flush = True)
-        if ltc is False and i == len(ephemerides_epochs) - 1:
+            print('\rCalcutating Light-Time Correction ({:.2f}%)'.format((i+1)/len(ephemeris_epochs)*100), end = '', flush = True)
+        if ltc is False and i == len(ephemeris_epochs) - 1:
             print()
-    return ephemerides
+    return ephemeris
