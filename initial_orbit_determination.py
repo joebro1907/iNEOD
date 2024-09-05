@@ -533,7 +533,7 @@ def initial_orbit_determination():
                    " Frame (ICRF)")
         text.write("\nReference Plane: Ecliptic X-Y Plane derived from ICRF" + 
                    " (J2000 obliquity)")
-        text.write("\n\nState Vectors:\n\n")
+        text.write("\n\nState Vectors (r2, v2):\n\n")
         sigma_r_om = [sigma_decimals(sigma_r) for sigma_r in sigma_r_ec]
         sigma_v_om = [sigma_decimals(sigma_v) for sigma_v in sigma_v_ec]
         mean_rs = [f'{mean_r:.{int(om)}f}' for mean_r, om in zip(mean_r_ec, sigma_r_om)]
