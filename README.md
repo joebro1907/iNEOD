@@ -29,11 +29,11 @@ You can install these libraries using [requirements.txt](https://github.com/joeb
 
 1. Download this repository.
 
-2. Read the docstrings on both [initial_orbit_determination.py](https://github.com/joebro1907/iNEOD/blob/main/initial_orbit_determination.py) and [iod_functions.py](https://github.com/joebro1907/iNEOD/blob/main/iod_functions.py) to understand how to use the functions and scripts effectively. This means understanding the input parameters, expected data formats, and the expected output.
+2. Read the docstrings on both [ineod.py](https://github.com/joebro1907/iNEOD/blob/main/initial_orbit_determination.py) and [ineod_functions.py](https://github.com/joebro1907/iNEOD/blob/main/iod_functions.py) to understand how to use the functions and scripts effectively. This means understanding the input parameters, expected data formats, and the expected output.
   
    **_When running, the code itself will tell the you everything it needs and the expected format._**
 
-3. Run the code with `initial_orbit_determination.py`
+3. Run the code with `ineod.py`
 
 4. Test the code with the provided example data in the [data](https://github.com/joebro1907/iNEOD/tree/main/data) folder. Also you can try and modify some parameters like `nmax` or `tol` in the `gauss_method` function to see how the code behaves and how they can be adapted for your specific needs.
 
