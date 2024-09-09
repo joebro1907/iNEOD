@@ -9,7 +9,7 @@ All this being open source.
 
 ## Requirements
 
-NEOID requires the following Python packages:
+iNEOD requires the following Python packages:
 
 * Numpy
 * Scipy
@@ -19,7 +19,7 @@ NEOID requires the following Python packages:
 * Pandas
 * [Poliastro](https://github.com/joebro1907/poliastro) (forked version)
 
-NEOID is supported on macOS and Windows on Python 3.11.
+iNEOD is supported on macOS and Windows on Python 3.11.
   
 You can install these libraries using [requirements.txt](https://github.com/joebro1907/iNEOD/blob/main/requirements.txt) in the source:
 
