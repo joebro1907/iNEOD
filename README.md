@@ -1,9 +1,9 @@
-# NEIOD ☄️
+# iNEOD ☄️
 A modern and open implementation of Gauss's method for the Initial Orbit Determination of Near-Earth Objects (Minor Planets)
 
-NEIOD is focused on the initial orbital determination for Near-Earth Objects (specifically, Asteroids). It involves functions for handling observational data, calculating positions, implementing Gauss's method for initial orbit determination, calculating orbital elements, solving Kepler's equation, and plotting orbits using Python and astronomy-related libraries.
+iNEOD is focused on the initial orbital determination for Near-Earth Objects (specifically, Asteroids). It involves functions for handling observational data, calculating positions, implementing Gauss's method for initial orbit determination, calculating orbital elements, solving Kepler's equation, and plotting orbits using Python and astronomy-related libraries.
 
-NEIOD is valuable for students, enthusiasts, astronomers, and anyone interested in celestial mechanics. It provides tools and functions to analyze observational data, determine orbits of celestial objects, calculate orbital elements, and visualize orbits, which are essential tasks in the study of celestial bodies.
+iNEOD is valuable for students, enthusiasts, astronomers, and anyone interested in celestial mechanics. It provides tools and functions to analyze observational data, determine orbits of celestial objects, calculate orbital elements, and visualize orbits, which are essential tasks in the study of celestial bodies.
 
 All this being open source.
 
@@ -21,7 +21,7 @@ NEOID requires the following Python packages:
 
 NEOID is supported on macOS and Windows on Python 3.11.
   
-You can install these libraries using [requirements.txt](https://github.com/joebro1907/NEIOD/blob/main/requirements.txt) in the source:
+You can install these libraries using [requirements.txt](https://github.com/joebro1907/iNEOD/blob/main/requirements.txt) in the source:
 
 `pip install -r requirements.txt`
 
@@ -29,13 +29,13 @@ You can install these libraries using [requirements.txt](https://github.com/joeb
 
 1. Download this repository.
 
-2. Read the docstrings on both [initial_orbit_determination.py](https://github.com/joebro1907/NEIOD/blob/main/initial_orbit_determination.py) and [iod_functions.py](https://github.com/joebro1907/NEIOD/blob/main/iod_functions.py) to understand how to use the functions and scripts effectively. This means understanding the input parameters, expected data formats, and the expected output.
+2. Read the docstrings on both [initial_orbit_determination.py](https://github.com/joebro1907/iNEOD/blob/main/initial_orbit_determination.py) and [iod_functions.py](https://github.com/joebro1907/iNEOD/blob/main/iod_functions.py) to understand how to use the functions and scripts effectively. This means understanding the input parameters, expected data formats, and the expected output.
   
    **_When running, the code itself will tell the you everything it needs and the expected format._**
 
 3. Run the code with `initial_orbit_determination.py`
 
-4. Test the code with the provided example data in the [data](https://github.com/joebro1907/NEIOD/tree/main/data) folder. Also you can try and modify some parameters like `nmax` or `tol` in the `gauss_method` function to see how the code behaves and how they can be adapted for your specific needs.
+4. Test the code with the provided example data in the [data](https://github.com/joebro1907/iNEOD/tree/main/data) folder. Also you can try and modify some parameters like `nmax` or `tol` in the `gauss_method` function to see how the code behaves and how they can be adapted for your specific needs.
 
    You can also try modifying the input data to see how the accuracy changes, for example.
 
@@ -43,7 +43,7 @@ You can install these libraries using [requirements.txt](https://github.com/joeb
 
 ## License
 
-NEIOD is released under the MIT license. Please refer to the [LICENSE](https://github.com/joebro1907/NEIOD/blob/main/LICENSE) file.
+iNEOD is released under the MIT license. Please refer to the [LICENSE](https://github.com/joebro1907/iNEOD/blob/main/LICENSE) file.
 
     The MIT License (MIT)
     
@@ -73,7 +73,7 @@ NEIOD is released under the MIT license. Please refer to the [LICENSE](https://g
 
    You can  contact me directly if you have specific questions not covered by the documentation.
 
-* GitHub Repository Issues: If you find any bugs or would like to change/add things, you can use this repository's [issue tracker](https://github.com/joebro1907/NEIOD/issues) for known issues, discussions, and possible solutions.
+* GitHub Repository Issues: If you find any bugs or would like to change/add things, you can use this repository's [issue tracker](https://github.com/joebro1907/iNEOD/issues) for known issues, discussions, and possible solutions.
 
 ## Maintenance
 
