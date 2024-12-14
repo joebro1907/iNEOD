@@ -84,7 +84,7 @@ def read_ADES_format():
     """
     
     # Set or create folder and filename to save results
-    folder = "data"
+    folder = "./data/astrometry/"
     if not os.path.exists(folder):
         print("\nThe folder does not exist. It will be created...")
         os.makedirs(folder)
@@ -147,7 +147,7 @@ def read_ADES_format():
 # THIS FUNCTION IS NOT DONE, initial clone of read_ADES_format
 def read_MPC_format():
     # Set or create folder and filename to save results
-    folder = "data"
+    folder = "./data/astrometry/"
     if not os.path.exists(folder):
         print("\nThe folder does not exist. It will be created...")
         os.makedirs(folder)
