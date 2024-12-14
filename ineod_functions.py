@@ -624,7 +624,7 @@ def mpc_obs_query(obs_code):
     from datetime import datetime
     date = datetime.today().strftime("%Y-%m-%d")
     # Set or create folder and filename to save results
-    folder = "data"
+    folder = "./temp/"
     if not os.path.exists(folder):
         os.makedirs(folder)
     temp_file = os.path.join(folder, f"temp_{date}.txt")
@@ -1590,7 +1590,7 @@ def plot_orbit(name, tdb, R, V, coe, db_coe, theme):
         "Neptune": "#3b66d4",
     }
     # Set or create folder to save results
-    folder = "results"
+    folder = "./results/"
     if not os.path.exists(folder):
         os.makedirs(folder)
     # Assign State Vectors and COE to Orbit.from_classical inputs
