@@ -1,0 +1,21 @@
+# version=2017
+# observatory
+! mpcCode W95
+# submitter
+! name J. Batista
+# observers
+! name J. Fabrega
+# measurers
+! name J. Batista
+# telescope
+! design Reflector
+! aperture 0.40
+! fRatio 3.7
+! detector CMO
+# software
+! astrometry Tycho 10.8.5
+! photometry Tycho 10.8.5
+permID |provID     |trkSub  |mode|stn |obsTime                |ra         |dec        |rmsRA|rmsDec|rmsFit|astCat  |mag  |rmsMag|band|photCat |photAp|logSNR|exp |notes|remarks
+  66251|1999 GJ2   | BAT0001| CMO|W95 |2022-07-17T00:09:56Z   |245.76349  |+10.80428  |0.13 |0.15  |0.19  |  ATLAS2|17.5 |0.06  |  Sr|  ATLAS2| 3.7  |1.64  | 120|     |
+  66251|1999 GJ2   | BAT0007| CMO|W95 |2022-07-21T01:09:29Z   |246.02951  |+10.16846  |0.26 |0.29  |0.34  |  ATLAS2|17.5 |0.12  |  Sr|  ATLAS2| 3.7  |1.08  | 120|     |
+  66251|1999 GJ2   | BAT0011| CMO|W95 |2022-07-24T01:02:50Z   |246.36663  |+9.62280   |0.09 |0.20  |0.21  |  ATLAS2|17.7 |0.10  |  Sr|  ATLAS2| 3.7  |1.56  | 120|     |
